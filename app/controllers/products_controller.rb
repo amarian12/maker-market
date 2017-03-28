@@ -45,3 +45,4 @@
     def product_params
       params.fetch(:product, {})
     end
+  end

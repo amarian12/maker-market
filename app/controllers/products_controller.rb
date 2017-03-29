@@ -55,6 +55,6 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :photo, :photo_cache, :category_id, :profile_id)
+      params.require(:product).permit(:name, :description, :price, :photo, :photo_cache, :category_id, :profile_id)
     end
   end

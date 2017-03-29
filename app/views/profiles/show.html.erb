@@ -1,2 +1,9 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1><%= @profile.name %></h1>
+
+<h4><%= @profile.location %></h4>
+<p><%= @profile.description %></p>
+
+<% @profile.products.each do |product| %>
+  <p> product.name </p>
+  <p> product.description </p>
+<% end %>

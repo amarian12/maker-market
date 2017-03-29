@@ -22,7 +22,10 @@
   # POST /products
   def create
     @product = Product.create(product_params)
-    redirect_to product_path(@product)
+    if @product.save
+      redirect_to product_path(@product)
+    else
+      render :new
   end
 
   def update
@@ -33,6 +36,7 @@
   # DELETE /products/1
   def destroy
     @product.destroy
+    redirect_to products_path
   end
 
   private
@@ -43,6 +47,6 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.fetch(:product, {})
+      params.require(:product).permit(:name, :description, :photo, :photo_cache, :category_id, :profile_id)
     end
   end

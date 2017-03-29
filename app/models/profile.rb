@@ -4,5 +4,5 @@ class Profile < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :reviews, :as => :reviewable
 
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, on: :update
 end

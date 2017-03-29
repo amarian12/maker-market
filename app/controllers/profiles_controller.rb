@@ -15,10 +15,12 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.fetch(:profile, {})
+    # params.fetch(:profile, {})
+    params.require(:profile).permit(:name, :description, :location)
   end
 
   def set_profile
     @profile = Profile.find(params[:id])
+
   end
 end

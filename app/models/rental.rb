@@ -1,4 +1,5 @@
 class Rental < ApplicationRecord
-  belongs_to :profile, :product
+  belongs_to :profile
+  belongs_to :product
   has_many :reviews
 end

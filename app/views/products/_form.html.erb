@@ -2,9 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+  <%= f.input :name %>
+  <%= f.input :category_id, collection: @categories %>
+  <%= f.input :description, placeholder: 'maximum 400 characters',length: { maximum: 400 } %>
+  <%= f.submit "add product", class: "btn btn-primary" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>

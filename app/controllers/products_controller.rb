@@ -13,6 +13,7 @@
   # GET /products/new
   def new
     @product = Product.new
+    @categories = Category.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
   end
 
   # GET /products/1/edit
@@ -22,10 +23,12 @@
   # POST /products
   def create
     @product = Product.create(product_params)
+    @product.profile_id = current_user.profile.id
     if @product.save
       redirect_to product_path(@product)
     else
       render :new
+    end
   end
 
   def update

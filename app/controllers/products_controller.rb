@@ -5,6 +5,7 @@
   # GET /products
   def index
     @products = Product.all
+    @categories = Category.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
   end
 
   # GET /products/1

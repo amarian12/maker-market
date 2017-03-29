@@ -4,30 +4,34 @@
   <div class="banner-content">
     <h1>The Makers Market</h1>
     <p>Rent stuff so you can make things</p>
-    <a class="btn btn-primary btn-lg">BROWSE</a>
+    <form action="#" class="form-inline">
+      <input type="text" class="form-control input-md" placeholder="Sewing machine">
+      <input type="text" class="form-control input-md" placeholder="Amsterdam">
+      <input type="submit" class="btn btn-primary btn-md" value="Search">
+    </form>
+    <!-- <a class="btn btn-primary btn-lg">BROWSE</a> -->
   </div>
 </div>
 
+<div class="category-container">
+  <% @categories.each do |category| %>
+    <a class="btn btn-primary btn-md category"><%= category.name %></a>
+  <% end  %>
+</div>
 
-<h1>Products</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %></td>
-        <td><%= link_to 'Show', product %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <% @products.each do |product| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" >
+      <%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %>
+        <div class="card-category"><%= product.category.name %></div>
+          <p><%= product.name %></p>
+          <p><%= product.profile.location %></p>
+        <a class="card-link" href="product_path(product)"></a>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>

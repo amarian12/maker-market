@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p><%= @product.name %></p>
-<%= @product.description %>
 <%= cl_image_tag @product.photo, height: 300, width: 400, crop: :fill %>
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= @product.description %>
+<p><%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %></p>
+<p> <%= link_to 'Rent this product', new_product_rental_path(@product) %></p>

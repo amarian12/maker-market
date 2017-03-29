@@ -23,7 +23,7 @@
 
   # POST /products
   def create
-    @product = Product.create(product_params)
+    @product = Product.new(product_params)
     @product.profile_id = current_user.profile.id
     if @product.save
       redirect_to product_path(@product)
@@ -33,8 +33,11 @@
   end
 
   def update
-    @product.update(product_params)
-    redirect_to product_path(@product)
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render :edit
+    end
   end
 
   # DELETE /products/1

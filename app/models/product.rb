@@ -5,5 +5,7 @@ class Product < ApplicationRecord
   has_many :rentals
 
   validates :name, presence: true, uniqueness: true
+
+  mount_uploader :photo, PhotoUploader
 end
 

@@ -5,4 +5,6 @@ class Profile < ApplicationRecord
   has_many :reviews, :as => :reviewable
 
   validates_presence_of :name, :description, on: :update
+
+  mount_uploader :photo, PhotoUploader
 end

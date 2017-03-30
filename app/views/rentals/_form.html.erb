@@ -1,0 +1,10 @@
+ <%= simple_form_for([@product, @rental]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit "Confirm", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

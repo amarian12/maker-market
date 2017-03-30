@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_profile
 
   def current_profile
-    self.current_user.profile
+    current_user.profile
   end
 end

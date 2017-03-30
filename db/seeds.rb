@@ -22,7 +22,7 @@ categories = Category.all
 
 10.times do 
 	u = User.create(email: Faker::Internet.email, password: "secret")
-	p = Profile.create(name:Faker::Name.name, description: "Hello")
+	p = Profile.create(name:Faker::Name.name, description: "Hello", location: 'Amsterdam, NL')
 	u.profile = p
 end
 
@@ -34,6 +34,7 @@ profiles = Profile.all
 	  description: "This is a lovely thing.", 
 	  photo: Faker::Placeholdit.image("50x50"),
 	  category: categories.sample,
+	  price: rand(1..100),
 	  profile: profiles.sample
 	)
 end

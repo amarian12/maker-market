@@ -7,4 +7,5 @@ class Profile < ApplicationRecord
   validates_presence_of :name, :description, on: :update
 
   mount_uploader :photo, PhotoUploader
+
 end

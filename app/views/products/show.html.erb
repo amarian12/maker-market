@@ -1,27 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container text-center">
   <div class="col-md-6">
     <h1><%= @product.name %></h1>
     <h4><font color="#5CB85C"><%= @product.price %>€ per week </font></h4>
 
 
-    <h3> <%= @product.profile.location %> || <%= @product.category.name %></h3>
+    <h4 style="display: inline"> <%= @product.profile.location %> || <h5 style="display: inline"><%= @product.category.name %></h5></h4>
+    <br><br>
     <%= cl_image_tag @product.photo, height: 300, width: 400, crop: :fill %>
+    <br><br>
     <p><%= @product.description %></p>
+    <p> Rent from <%= link_to @product.profile.name, profile_path(@product.profile.id) %></p>
+
       <%= link_to new_product_rental_path(@product), class: "btn btn-success" do %>
       <i class="glyphicon glyphicon-hand-up"></i> Rent This Item
       <% end %>
     <p><%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %></p>
 
   </div>
-  <div class="col-md-6">
+  <div class="col-sm-3">
     <iframe
-    width="300"
-    height="400"
+    width="350"
+    height="300"
     frameborder="0" style="border:1"
     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDgjt32H9gpBvp_jtCrwOZwTYKAhwLeklE
     &q=<%= @product.profile.location %>" allowfullscreen>
   </iframe>
+
+  <h4 style="text-align:center">Availability</h4>
+  <%= image_tag("calendar.jpeg", :alt => "standin") %>
+
 </div>
 </div>

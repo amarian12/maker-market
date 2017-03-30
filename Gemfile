@@ -11,6 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise'
 gem 'geocoder'
+gem "simple_calendar", "~> 2.0"
+
 
 
 gem 'sass-rails'

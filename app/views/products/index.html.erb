@@ -1,5 +1,5 @@
 <!-- <p id="notice"><%= notice %></p>
- -->
+-->
 <div class="banner">
   <div class="banner-content">
     <h1>The Makers Market</h1>
@@ -14,23 +14,44 @@
 </div>
 
 <div class="category-container">
+  <a class="btn btn-primary btn-md category active" data-target="#all">All</a>
   <% @categories.each do |category| %>
-    <a class="btn btn-primary btn-md category"><%= category.name %></a>
+  <a class="btn btn-primary btn-md category" data-target="#<%= category.name %>"><%= category.name %></a>
   <% end  %>
 </div>
 
 <div class="container">
-  <% @products.each do |product| %>
+
+  <div class="selected-category" id="all">
+    <% @products.each do |product| %>
     <div class="col-xs-12 col-sm-4">
       <div class="card" >
-        <%= link_to product_path(product) do %>
-          <%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %>
-        <% end %>
         <div class="card-category"><%= product.category.name %></div>
-          <p><%= link_to product.name, product_path(product) %></p>
-          <p><%= product.profile.location %></p>
+        <%= link_to product_path(product) do %>
+        <%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %>
+        <% end %>
+        <p>€ <%= product.price %> <%= link_to product.name, product_path(product) %><%= product.profile.location.nil? ? "" : ", " + product.profile.location  %></p>
       </div>
     </div>
+    <% end %>
+  </div>
+
+  <% @categories.each do |category| %>
+    <div class="selected-category hidden" id="<%= category.name %>">
+      <% category.products.each do |product| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" >
+          <div class="card-category"><%= product.name %></div>
+          <%= link_to product_path(product) do %>
+          <%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %>
+          <% end %>
+          <p>€ <%= product.price %> <%= link_to product.name, product_path(product) %><%= product.profile.location.nil? ? "" : ", " + product.profile.location  %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
   <% end %>
+
 </div>
+
 

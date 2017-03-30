@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
 
   def profile_params
     # params.fetch(:profile, {})
-    params.require(:profile).permit(:name, :description, :location)
+    params.require(:profile).permit(:name, :photo, :photo_cache, :description, :location)
   end
 
   def set_profile

@@ -1,26 +1,31 @@
 <div class = "container">
 
-  <div class="col-md-6">
+<div class="col-md-4">
 
-<h1><%= @profile.name %></h1>
-
+<%= cl_image_tag @profile.photo, height: 150, width: 150, crop: :fill %>
+<h2><%= @profile.name %></h2>
+<%= link_to "edit profile", edit_profile_path(@profile) %>
 <h4><%= @profile.location %></h4>
 <p><%= @profile.description %></p>
 
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-8">
+
+<h3>Rental requests</h3>
+
 <h3>Products You Have Available to Rent Out</h3>
 <% @profile.products.each do |product| %>
+    <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %>
     <%= link_to product.name, product_path(product) %> |
     <%= link_to "Delete", profile_path, method: :delete %>
     <p></p>
 <% end %>
 
 <h3>Your Current Rentals</h3>
-<% @profile.products.each do |rental| %>
-  <p> <%= rental.name %> </p>
+<% @profile.products.each do |product| %>
+<p> <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %> <%= product.name %> </p>
 <% end %>
 </div>
 </div>

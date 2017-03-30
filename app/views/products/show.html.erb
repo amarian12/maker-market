@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container text-center">
   <div class="col-md-6">
     <h1><%= @product.name %></h1>
     <h4><font color="#5CB85C"><%= @product.price %>€ per week </font></h4>
@@ -11,6 +11,8 @@
     <%= cl_image_tag @product.photo, height: 300, width: 400, crop: :fill %>
     <br><br>
     <p><%= @product.description %></p>
+    <p> Rent from <%= link_to @product.profile.name, profile_path(@product.profile.id) %></p>
+
       <%= link_to new_product_rental_path(@product), class: "btn btn-success" do %>
       <i class="glyphicon glyphicon-hand-up"></i> Rent This Item
       <% end %>

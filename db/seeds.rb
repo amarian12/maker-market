@@ -6,10 +6,34 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Category.destroy_all
+Profile.destroy_all
+Product.destroy_all
+User.destroy_all
 
 cat_array = ["Photography", "Musical Instruments", "Sculpting", "Woodwork", "Cooking", "Sewing", "Gardening"]
 
 cat_array.each do |c|
-    category = Category.new(name: c)
-    category.save!
+  category = Category.new(name: c)
+  category.save!
+end
+
+categories = Category.all
+
+
+10.times do 
+	u = User.create(email: Faker::Internet.email, password: "secret")
+	p = Profile.create(name:Faker::Name.name, description: "Hello")
+	u.profile = p
+end
+
+profiles = Profile.all
+
+30.times do
+	product = Product.create(
+	  name: Faker::Pokemon.name,
+	  description: "This is a lovely thing.", 
+	  photo: Faker::Placeholdit.image("50x50"),
+	  category: categories.sample,
+	  profile: profiles.sample
+	)
 end

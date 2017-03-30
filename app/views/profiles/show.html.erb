@@ -12,8 +12,16 @@
 </div>
 
 <div class="col-md-8">
+<div class= "container" style="background-color:#F5F5DC">
+<h3>Rental Requests:</h3>
+<% @profile.products.each do |product| %>
+  <% product.rentals.each do |rental| %>
+    <p>| <strong> <%= link_to rental.profile_id, profile_path(rental.profile_id) %> </strong> wants
+<strong> <%= link_to rental.product_id, product_path(rental.product_id) %> </strong> |
+from <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>  <% end %>
+<% end %>
 
-<h3>Rental requests</h3>
+</div>
 
 <h3>Products You Have Available to Rent Out</h3>
 <% @profile.products.each do |product| %>
@@ -23,9 +31,11 @@
     <p></p>
 <% end %>
 
-<h3>Your Current Rentals</h3>
-<% @profile.products.each do |product| %>
-<p> <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %> <%= product.name %> </p>
+<h3>You Are Renting:</h3>
+<% @profile.rentals.each do |rental| %>
+<p>| <strong> <%= link_to rental.product.name, product_path(rental.product) %> </strong> from
+<strong> <%= link_to rental.product.profile.name, product_path(rental.product.profile) %> </strong> |
+for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
 <% end %>
 </div>
 </div>

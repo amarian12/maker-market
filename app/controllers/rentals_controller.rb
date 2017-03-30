@@ -25,6 +25,13 @@ class RentalsController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
+  def find_renter_by_id(profile_id)
+    @renter = Rental.find(profile_id).name
+  end
+
   private
 
   def rental_params

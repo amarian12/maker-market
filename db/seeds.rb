@@ -19,7 +19,7 @@ end
 
 categories = Category.all
 
-10.times do
+5.times do
 	u = User.create(email: Faker::Internet.email, password: "secret")
 	p = Profile.create(name:Faker::Name.name, description: "Hello", location: 'Amsterdam, NL')
 	u.profile = p
@@ -27,11 +27,11 @@ end
 
 profiles = Profile.all
 
-30.times do
+20.times do
 	product = Product.create(
 	  name: Faker::Pokemon.name,
 	  description: "This is a lovely thing.",
-	  photo: Faker::Placeholdit.image("50x50"),
+	  photo: Faker::LoremPixel.image("50x50", true),
 	  category: categories.sample,
 	  price: rand(1..100),
 	  profile: profiles.sample

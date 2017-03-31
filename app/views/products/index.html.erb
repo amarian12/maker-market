@@ -28,11 +28,7 @@
       <div class="card" >
         <div class="card-category"><%= product.category.name %></div>
         <%= link_to product_path(product) do %>
-          <% if product.photo.nil? != false %>
             <%= image_tag product.photo, height: 200, width: 200, crop: :fill %>
-          <% else %>
-            <%= image_tag "Placeholder.png" , height: 200, width: 200, crop: :fill %>
-            <% end %>
         <% end %>
         <p>€ <%= product.price %> <%= link_to product.name, product_path(product) %><%= product.profile.location.nil? ? "" : ", " + product.profile.location  %></p>
       </div>

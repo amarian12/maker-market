@@ -4,3 +4,4 @@
 //= require_tree .
 //= require coole_javashit.js
 //= require bootstrap-datepicker
+//= require bootstrap-material-design

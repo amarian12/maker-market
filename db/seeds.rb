@@ -10,7 +10,7 @@ Profile.destroy_all
 Product.destroy_all
 User.destroy_all
 
-cat_array = ["Photography", "Musical Instruments", "Sculpting", "Woodwork", "Cooking"]
+cat_array = ["Photography", "Music", "Sculpting", "Woodwork", "Cooking"]
 
 cat_array.each do |c|
   category = Category.new(name: c)

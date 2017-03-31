@@ -22,20 +22,20 @@
     <p></p>
 <% end %>
 
-<div class= "container" style="background-color:#F5F5DC">
-<h3>Rental Requests:</h3>
-<% @profile.products.each do |product| %>
-  <% product.rentals.each do |rental| %>
-    <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
-    wants
-    <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
-    from
-     <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
-     <strong><%= link_to "Accept", profile_path %></strong> or
-    <strong><%= link_to "Reject", profile_path, method: :delete %></strong>
-  <% end %>
+<% if current_profile == @profile %>
+  <div class= "container" style="background-color:#F5F5DC">
+  <h3>Rental Requests:</h3>
+  <% @profile.products.each do |product| %>
+    <% product.rentals.each do |rental| %>
+      <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
+      wants
+      <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
+      from
+       <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
+       <strong><%= link_to "Accept", profile_path %></strong> or
+     <strong><%= link_to "Reject", profile_path, method: :delete %></strong>
+    <% end %>
 <% end %>
-
 
 <h3>You Have Requested:</h3>
 <% @profile.rentals.each do |rental| %>
@@ -44,6 +44,8 @@
 for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
   <%= rental.confirmed == true ? "ACCEPTED" : "**PENDING**" %>
 <% end %>
+<% end %>
+
 
 </div>
 </div>

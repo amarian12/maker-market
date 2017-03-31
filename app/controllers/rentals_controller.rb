@@ -18,8 +18,8 @@ class RentalsController < ApplicationController
   end
 
   def update
-    @rental.update(rental_params)
-    redirect_to rental_path(@rental)
+    @rental.update(confirmed: params[:confirmed])
+    redirect_to profile_path(current_profile)
   end
 
   def edit

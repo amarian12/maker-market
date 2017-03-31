@@ -1,3 +1,33 @@
 @import "utilities";
 @import "footer";
 @import "navbar";
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+.product-card {
+	margin: 15px;
+}
+
+.card-block {
+	padding: 10px;
+}
+
+.card-block > p {
+	color: #808080;
+}
+
+input.form-control.banner-input.input-md {
+  color: white;
+}
+
+.navbar-wagon-button {
+	border-color: #00aa9a !important;
+}

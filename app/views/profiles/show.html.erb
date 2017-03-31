@@ -4,7 +4,7 @@
 
 <%= cl_image_tag @profile.photo, height: 150, width: 150, crop: :fill %>
 <h2><%= @profile.name %></h2>
-<%= link_to "edit profile", edit_profile_path(@profile) %>
+<%= link_to "edit profile", edit_profile_path(@profile) if @profile == current_profile %>
 <h4><%= @profile.location %></h4>
 <p><%= @profile.description %></p>
 

@@ -1,7 +1,9 @@
 <div class="container">
-<h1>Rent <strong><%= @product.name %></strong></h1>
-<h3><font color="#5CB85C"><%= @product.price %>€</font> per week</h3>
+  <h1>Rent <strong><%= @product.name %></strong></h1>
+    <div class="jumbotron">
+      <h3><font color="#5CB85C"><%= @product.price %>€</font> per week</h3>
 
-<%= render 'form', rental: @rental %>
+      <%= render 'form', rental: @rental %>
 
+  </div>
 </div>

@@ -21,7 +21,7 @@
 
   # GET /products/1/edit
   def edit
-    unless @profile == current_profile
+    unless @product.profile == current_profile
       redirect_to product_path(@product)
     flash[:notice] = "You shall not edit!"
     end

@@ -31,3 +31,32 @@ input.form-control.banner-input.input-md {
 .navbar-wagon-button {
 	border-color: #00aa9a !important;
 }
+
+.prod-show-card {
+	height: 400px;
+}
+
+.prod-title > h1 {
+	color: #424242;
+}
+
+.price-text {
+	color: #00aa9a !important;
+}
+
+.prod-reviews-card {
+	padding-top: 20px !important;
+	margin-top: 20px !important;
+	padding-bottom: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	align-content: vertical;
+}
+
+.emergency-padding {
+	padding: 20px 0 20px 0;
+}

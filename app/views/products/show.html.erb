@@ -1,50 +1,79 @@
 <p id="notice"><%= notice %></p>
-
-<div class="container text-center">
-  <div class="col-md-6">
-    <h1><%= @product.name %></h1>
-    <h4><font color="#5CB85C"><%= @product.price %>€ per week </font></h4>
-
-
-    <h4 style="display: inline"> <%= @product.profile.location %> || <h5 style="display: inline"><%= @product.category.name %></h5></h4>
-    <br><br>
-    <%= cl_image_tag @product.photo, height: 300, width: 400, crop: :fill %>
-    <br><br>
-    <p><%= @product.description %></p>
-    <p> Rent from <%= link_to @product.profile.name, profile_path(@product.profile.id) %></p>
-
-      <%= link_to new_product_rental_path(@product), class: "btn btn-success" do %>
-      <i class="glyphicon glyphicon-hand-up"></i> Rent This Item
-      <% end %>
-    <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" if @product.profile == current_profile %> <%= link_to 'Back', products_path, class: "btn btn-info" %></p>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 prod-title">
+      <h1><%= @product.name %> | <span class="price-text"><%= @product.price %>€ / week</span></h1> 
+    </div>
   </div>
-
-  <div class="col-sm-3">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="card prod-show-card text-center">
+        <%= cl_image_tag @product.photo, class: "card-img-top", height: 300, width: 555, crop: :fill %>
+        <div class="card-block">
+          <p><%= @product.description %></p>
+          <h4> <%= @product.profile.location %> || <%= @product.category.name %></h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="card prod-show-card text-center">
+        <div class="card-block">
+          <div class="col-xs-12 prod-title">
+            <h3>Availability</h3>
+            <div class="input-group date" data-provide="datepicker">
+                <input type="text" placeholder="Type date here" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>  
+          </div>
+          <div class="card-block flex-container">
+            <div class="emergency-padding">
+              <p> Rent from <%= link_to @product.profile.name, profile_path(@product.profile.id) %></p>
+            </div>
+            <div class="emergency-padding">
+              <%= link_to new_product_rental_path(@product), class: "btn btn-success" do %>
+                <i class="glyphicon glyphicon-hand-up"></i> Rent This Item
+              <% end %>
+            </div>
+            <div class="emergency-padding">
+              <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" if @product.profile == current_profile %></p>
+              <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary"%> <%= link_to 'Back', products_path, class: "btn btn-info" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card prod-reviews-card text-center">
+        <div class="prod-title">
+          <h3>Product Reviews</h3>
+        </div>
+        <div class="card-block">
+          <% @product.rentals.each do |rental| %>
+            <% rental.reviews.each do |review| %>
+            <%= review.stars %>
+            <%= review.description %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
     <iframe
-    width="350"
+    width="100%"
     height="300"
     frameborder="0" style="border:1"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDgjt32H9gpBvp_jtCrwOZwTYKAhwLeklE
+src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDgjt32H9gpBvp_jtCrwOZwTYKAhwLeklE
     &q=<%= @product.profile.location %>" allowfullscreen>
   </iframe>
-
-  <h4 style="text-align:center">Availability</h4>
-  <div class="input-group date" data-provide="datepicker">
-      <input type="text" class="form-control">
-      <div class="input-group-addon">
-          <span class="glyphicon glyphicon-th"></span>
-      </div>
-  </div>
-
-    <h3>Product Reviews</h3>
-  <% @product.rentals.each do |rental| %>
-    <% rental.reviews.each do |review| %>
-    <%= review.stars %>
-    <%= review.stars %>
-    <% end %>
-  <% end %>
-
+</div>
 </div>
 
-</div>
+      
+

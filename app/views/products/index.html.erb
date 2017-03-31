@@ -5,8 +5,8 @@
     <h1>The Makers Market</h1>
     <p>Rent stuff so you can make things</p>
     <form action="#" class="form-inline">
-      <input type="text" class="form-control input-md" placeholder="Sewing machine">
-      <input type="text" class="form-control input-md" placeholder="Amsterdam">
+      <input type="text" class="form-control banner-input input-md" placeholder="Sewing machine">
+      <input type="text" class="form-control banner-input input-md" placeholder="Amsterdam">
       <input type="submit" class="btn btn-primary btn-md" value="Search">
     </form>
     <!-- <a class="btn btn-primary btn-lg">BROWSE</a> -->
@@ -14,9 +14,9 @@
 </div>
 
 <div class="category-container">
-  <a class="btn btn-primary btn-md category active" data-target="#all">All</a>
+  <a class="btn btn-raised btn-md category btn-primary" data-target="#all">All</a>
   <% @categories.each do |category| %>
-  <a class="btn btn-primary btn-md category" data-target="#<%= category.name %>"><%= category.name %></a>
+  <a class="btn btn-raised btn-md category" data-target="#<%= category.name %>"><%= category.name %></a>
   <% end  %>
 </div>
 
@@ -25,12 +25,17 @@
   <div class="selected-category" id="all">
     <% @products.each do |product| %>
     <div class="col-xs-12 col-sm-4">
-      <div class="card" >
-        <div class="card-category"><%= product.category.name %></div>
-        <%= link_to product_path(product) do %>
-            <%= image_tag product.photo, height: 200, width: 200, crop: :fill %>
-        <% end %>
-        <p>€ <%= product.price %> <%= link_to product.name, product_path(product) %><%= product.profile.location.nil? ? "" : ", " + product.profile.location  %></p>
+      <div class="card product-card text-center" >
+        <div class="card-category"><h4><%= link_to product.name, product_path(product) %></h4></div>
+        <div>
+          <%= link_to product_path(product) do %>
+              <%= image_tag product.photo, height: 200, width: 200, crop: :fill %>
+          <% end %>
+        </div>
+        <div class="card-block">
+          <p>€ <%= product.price %> / week </p>
+          <p><%= product.category.name %> | <%= product.profile.location.nil? ? "" : product.profile.location  %></p>
+        </div>
       </div>
     </div>
     <% end %>
@@ -39,13 +44,18 @@
   <% @categories.each do |category| %>
     <div class="selected-category hidden" id="<%= category.name %>">
       <% category.products.each do |product| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" >
-          <div class="card-category"><%= product.name %></div>
-          <%= link_to product_path(product) do %>
-          <%= cl_image_tag product.photo, height: 200, width: 200, crop: :fill %>
-          <% end %>
-          <p>€ <%= product.price %> <%= link_to product.name, product_path(product) %><%= product.profile.location.nil? ? "" : ", " + product.profile.location  %></p>
+       <div class="col-xs-12 col-sm-4">
+        <div class="card product-card text-center" >
+          <div class="card-category"><h4><%= link_to product.name, product_path(product) %></h4></div>
+          <div>
+            <%= link_to product_path(product) do %>
+                <%= image_tag product.photo, height: 200, width: 200, crop: :fill %>
+            <% end %>
+          </div>
+          <div class="card-block">
+            <p>€ <%= product.price %> / week </p>
+            <p><%= product.category.name %> | <%= product.profile.location.nil? ? "" : product.profile.location  %></p>
+          </div>
         </div>
       </div>
       <% end %>

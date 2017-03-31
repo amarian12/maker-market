@@ -19,7 +19,7 @@ end
 
 categories = Category.all
 
-5.times do
+1.times do
 	u = User.create(email: Faker::Internet.email, password: "secret")
 	p = Profile.create(name:Faker::Name.name, description: "Hello", location: 'Amsterdam, NL')
 	u.profile = p
@@ -27,7 +27,7 @@ end
 
 profiles = Profile.all
 
-20.times do
+1.times do
 	product = Product.create(
 	  name: Faker::Pokemon.name,
 	  description: "This is a lovely thing.",

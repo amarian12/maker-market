@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def new
-    @reviews = View.new
+    @review = View.new
   end
 
   def create

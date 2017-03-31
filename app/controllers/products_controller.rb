@@ -4,9 +4,13 @@
 
   # GET /products
   def index
-    @products = Product.all
     @categories = Category.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
-
+    @products = Product.all
+      if params[:search]
+        @products = Product.where(name: params[:search])
+      else
+        @products = Product.all
+      end
   end
 
   # GET /products/1

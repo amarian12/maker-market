@@ -1,0 +1,11 @@
+<%= simple_form_for(@review) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+    <%= f.input :stars collection: 1..5 %>
+    <%= f.input :description, placeholder: 'maximum 200 characters',length: { maximum: 200 } %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+

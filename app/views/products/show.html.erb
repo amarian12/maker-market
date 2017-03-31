@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 prod-title">
-      <h1><%= @product.name %> | <span class="price-text"><%= @product.price %>€ / week</span></h1> 
+      <h1><%= @product.name %> | <span class="price-text"><%= @product.price %>€ / week</span></h1>
     </div>
   </div>
   <div class="row">
@@ -25,7 +25,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
-            </div>  
+            </div>
           </div>
           <div class="card-block flex-container">
             <div class="emergency-padding">
@@ -37,8 +37,8 @@
               <% end %>
             </div>
             <div class="emergency-padding">
-              <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" if @product.profile == current_profile %></p>
-              <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary"%> <%= link_to 'Back', products_path, class: "btn btn-info" %></p>
+              <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" if @product.profile == current_profile %>
+               <%= link_to 'Back', products_path, class: "btn btn-info" %></p>
             </div>
           </div>
         </div>
@@ -54,10 +54,12 @@
         <div class="card-block">
           <% @product.rentals.each do |rental| %>
             <% rental.reviews.each do |review| %>
-            <%= review.stars %>
-            <%= review.description %>
+              <p><%= review.stars %> <i class="fa fa-star" aria-hidden="true"></i>
+               by <%= review.rental.profile.name %></p>
+              <p> "<%= review.description %>"</p>
             <% end %>
           <% end %>
+
         </div>
       </div>
     </div>
@@ -75,5 +77,5 @@ src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDgjt32H9gpBvp_jtCrwOZw
 </div>
 </div>
 
-      
+
 

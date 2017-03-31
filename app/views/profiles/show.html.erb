@@ -4,7 +4,7 @@
 
 <%= cl_image_tag @profile.photo, height: 150, width: 150, crop: :fill %>
 <h2><%= @profile.name %></h2>
-<%= link_to "edit profile", edit_profile_path(@profile) %>
+<%= link_to "edit profile", edit_profile_path(@profile) if @profile == current_profile %>
 <h4><%= @profile.location %></h4>
 <p><%= @profile.description %></p>
 
@@ -12,22 +12,9 @@
 </div>
 
 <div class="col-md-8">
-<div class= "container" style="background-color:#F5F5DC">
-<h3>Rental Requests:</h3>
-<% @profile.products.each do |product| %>
-  <% product.rentals.each do |rental| %>
-    <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
-    wants
-    <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
-    from
-     <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
-    <strong> <%= rental.confirmed %></strong>
-  <% end %>
-<% end %>
 
-</div>
 
-<h3>Products You Have Available to Rent Out</h3>
+<h3><%= @profile.name %>'s Products:</h3>
 <% @profile.products.each do |product| %>
     <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %>
     <%= link_to product.name, product_path(product) %> |
@@ -35,11 +22,31 @@
     <p></p>
 <% end %>
 
-<h3>You Are Renting:</h3>
+<% if current_profile == @profile %>
+  <div class= "container" style="background-color:#F5F5DC">
+  <h3>Rental Requests:</h3>
+  <% @profile.products.each do |product| %>
+    <% product.rentals.each do |rental| %>
+      <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
+      wants
+      <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
+      from
+       <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
+       <strong><%= link_to "Accept", profile_path %></strong> or
+     <strong><%= link_to "Reject", profile_path, method: :delete %></strong>
+    <% end %>
+<% end %>
+
+<h3>You Have Requested:</h3>
 <% @profile.rentals.each do |rental| %>
 <p>| <strong> <%= link_to rental.product.name, product_path(rental.product) %> </strong> from
 <strong> <%= link_to rental.product.profile.name, profile_path(rental.product.profile) %> </strong> |
 for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
+  <%= rental.confirmed == true ? "ACCEPTED" : "**PENDING**" %>
 <% end %>
+<% end %>
+
+
+</div>
 </div>
 </div>

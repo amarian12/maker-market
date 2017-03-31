@@ -7,6 +7,10 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    unless @profile == current_profile
+      redirect_to profile_path(@profile)
+    flash[:notice] = "You shall not edit!"
+    end
   end
 
   def show

@@ -54,10 +54,12 @@
         <div class="card-block">
           <% @product.rentals.each do |rental| %>
             <% rental.reviews.each do |review| %>
-            <%= review.stars %>
-            <%= review.description %>
+              <p><%= review.stars %> <i class="fa fa-star" aria-hidden="true"></i>
+               by <%= review.rental.profile.name %></p>
+              <p> "<%= review.description %>"</p>
             <% end %>
           <% end %>
+
         </div>
       </div>
     </div>

@@ -52,7 +52,7 @@ for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
     <font color = "red"> REJECTED </font>
   <% elsif rental.confirmed == true %>
     <font color = "green"> ACCEPTED </font>
-  <%= link_to "Review", new_review_path %></strong>
+  <%= link_to "Review", new_product_rental_review_path(rental.product, rental) %></strong>
   <% end %>
 <% end %>
 <% end %>

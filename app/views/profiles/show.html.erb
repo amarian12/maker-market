@@ -12,6 +12,16 @@
 </div>
 
 <div class="col-md-8">
+
+
+<h3><%= @profile.name %>'s Products:</h3>
+<% @profile.products.each do |product| %>
+    <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %>
+    <%= link_to product.name, product_path(product) %> |
+    <%= link_to "Delete", profile_path, method: :delete %>
+    <p></p>
+<% end %>
+
 <div class= "container" style="background-color:#F5F5DC">
 <h3>Rental Requests:</h3>
 <% @profile.products.each do |product| %>
@@ -21,25 +31,20 @@
     <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
     from
      <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
-    <strong> <%= rental.confirmed %></strong>
+     <strong><%= link_to "Accept", profile_path %></strong> or
+    <strong><%= link_to "Reject", profile_path, method: :delete %></strong>
   <% end %>
 <% end %>
 
-</div>
 
-<h3>Products You Have Available to Rent Out</h3>
-<% @profile.products.each do |product| %>
-    <%= cl_image_tag product.photo, height: 40, width: 40, crop: :fill %>
-    <%= link_to product.name, product_path(product) %> |
-    <%= link_to "Delete", profile_path, method: :delete %>
-    <p></p>
-<% end %>
-
-<h3>You Are Renting:</h3>
+<h3>You Have Requested:</h3>
 <% @profile.rentals.each do |rental| %>
 <p>| <strong> <%= link_to rental.product.name, product_path(rental.product) %> </strong> from
 <strong> <%= link_to rental.product.profile.name, profile_path(rental.product.profile) %> </strong> |
 for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
+  <%= rental.confirmed == true ? "ACCEPTED" : "**PENDING**" %>
 <% end %>
+
+</div>
 </div>
 </div>

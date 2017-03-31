@@ -16,9 +16,13 @@
 <h3>Rental Requests:</h3>
 <% @profile.products.each do |product| %>
   <% product.rentals.each do |rental| %>
-    <p>| <strong> <%= link_to rental.profile_id, profile_path(rental.profile_id) %> </strong> wants
-<strong> <%= link_to rental.product_id, product_path(rental.product_id) %> </strong> |
-from <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>  <% end %>
+    <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
+    wants
+    <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
+    from
+     <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
+    <strong> <%= rental.confirmed %></strong>
+  <% end %>
 <% end %>
 
 </div>

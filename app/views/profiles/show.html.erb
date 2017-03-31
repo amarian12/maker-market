@@ -38,7 +38,7 @@
 <h3>You Are Renting:</h3>
 <% @profile.rentals.each do |rental| %>
 <p>| <strong> <%= link_to rental.product.name, product_path(rental.product) %> </strong> from
-<strong> <%= link_to rental.product.profile.name, product_path(rental.product.profile) %> </strong> |
+<strong> <%= link_to rental.product.profile.name, profile_path(rental.product.profile) %> </strong> |
 for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
 <% end %>
 </div>

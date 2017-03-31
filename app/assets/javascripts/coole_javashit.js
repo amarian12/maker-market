@@ -2,8 +2,8 @@ $(function(){
 
   $(".btn.category").on("click", function(e){
     // Change active selection
-    $(".btn.category").removeClass('active');
-    $(this).toggleClass('active');
+    $(".btn.category").removeClass('btn-primary');
+    $(this).toggleClass('btn-primary');
 
     // Hide all selected-content (use class="hidden")
     $(".selected-category").addClass('hidden');

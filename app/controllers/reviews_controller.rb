@@ -1,10 +1,15 @@
 class ReviewsController < ApplicationController
   def new
-    @review = View.new
+    @review = Review.new
   end
 
   def create
     @review = Review.create(review_params)
-    redirect_back(fallback_location: root_path)
+    redirect_to profile_path(current_profile)
+  end
+
+  def review_params
+    # params.fetch(:rental, {})
+    params.require(:review).permit(:stars, :description)
   end
 end

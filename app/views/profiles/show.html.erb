@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 prod-title">
-      <h1><%= @profile.name %></h1> 
+      <h1><%= @profile.name %></h1>
     </div>
   </div>
   <div class="row">
@@ -12,7 +12,7 @@
         <div class="card-block">
           <p><%= @profile.description %></p>
           <h4><%= @profile.location %></h4>
-          <p><%= link_to "Edit Your Profile", edit_profile_path(@profile), class: "btn btn-primary" if @profile == current_profile %><%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger", method: :delete %></p>
+          <p><%= link_to "Edit Your Profile", edit_profile_path(@profile), class: "btn btn-primary" if @profile == current_profile %><%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger" if @profile == current_profile, method: :delete if @profile == current_profile %></p>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
               <div class="emergency-padding">
                 <%= cl_image_tag product.photo, height: 50, width: 50, crop: :fill %>
                 <span><%= link_to product.name, product_path(product) %></span>
-                <%= link_to "Delete", profile_path, class: "btn btn-sm btn-danger", method: :delete %>
+                <%= link_to "Delete", profile_path, class: "btn btn-sm btn-danger", method: :delete if @profile == current_profile %>
               </div>
             <% end %>
           </div>
@@ -53,7 +53,7 @@
                     <font color = "green"> ACCEPTED </font>
                 <% end %>
             <% end %>
-            
+
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
               <font color = "red"> REJECTED </font>
             <% elsif rental.confirmed == true %>
               <font color = "green"> ACCEPTED </font>
-            <%= link_to "Review", new_review_path, class: "btn btn-primary" %>
+            <%= link_to "Review", new_product_rental_review_path(rental.product, rental), class: "btn btn-primary" %>
           <% end %>
         <% end %>
         <% end %>

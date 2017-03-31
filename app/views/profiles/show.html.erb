@@ -3,11 +3,11 @@
 <div class="col-md-4">
 
 <%= cl_image_tag @profile.photo, height: 150, width: 150, crop: :fill %>
-<h2><%= @profile.name %></h2>
-<%= link_to "edit profile", edit_profile_path(@profile) if @profile == current_profile %>
+<h2><strong><%= @profile.name %></strong></h2>
 <h4><%= @profile.location %></h4>
 <p><%= @profile.description %></p>
 
+<p><%= link_to "Edit Your Profile", edit_profile_path(@profile) if @profile == current_profile %></p>
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
 </div>
 
@@ -26,14 +26,18 @@
   <div class= "container" style="background-color:#F5F5DC">
   <h3>Rental Requests:</h3>
   <% @profile.products.each do |product| %>
-    <% product.rentals.each do |rental| %>
+    <% product.rentals.pending_or_confirmed.each do |rental| %>
       <p>| <strong> <%= link_to rental.profile.name, profile_path(rental.profile_id) %> </strong>
       wants
       <strong> <%= link_to rental.product.name, product_path(rental.product_id) %> </strong> |
       from
        <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
-       <strong><%= link_to "Accept", profile_path %></strong> or
-     <strong><%= link_to "Reject", profile_path, method: :delete %></strong>
+        <% if rental.confirmed == nil %>
+          <strong><%= link_to "Accept", product_rental_path(product, rental, confirmed: true), method: :patch %></strong> or
+          <strong><%= link_to "Reject", product_rental_path(product, rental, confirmed: false), method: :patch %></strong>
+        <% elsif rental.confirmed == true %>
+            <font color = "green"> ACCEPTED </font>
+        <% end %>
     <% end %>
 <% end %>
 
@@ -42,10 +46,16 @@
 <p>| <strong> <%= link_to rental.product.name, product_path(rental.product) %> </strong> from
 <strong> <%= link_to rental.product.profile.name, profile_path(rental.product.profile) %> </strong> |
 for <strong> <%= rental.start_date %> - <%= rental.end_date %></strong>
-  <%= rental.confirmed == true ? "ACCEPTED" : "**PENDING**" %>
+  <% if rental.confirmed == nil %>
+    <strong> PENDING </strong>
+  <% elsif rental.confirmed == false %>
+    <font color = "red"> REJECTED </font>
+  <% elsif rental.confirmed == true %>
+    <font color = "green"> ACCEPTED </font>
+  <%= link_to "Review", new_review_path %></strong>
+  <% end %>
 <% end %>
 <% end %>
-
 
 </div>
 </div>

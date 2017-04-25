@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+https://maker-market-1.herokuapp.com/
+
+Built with Rails, styled with Materialize gem

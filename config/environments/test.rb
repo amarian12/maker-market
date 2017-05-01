@@ -1,11 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Test database is "scratch space" for the test suite and is wiped
+  # Test db is "scratch space" for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
-  # If you are using a tool that
+  # If using a tool that
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
